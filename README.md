@@ -59,14 +59,24 @@ The analysis was structured as a numbered notebook pipeline, mirroring how I'd o
 **1. The 80/20 of rejections is not where the worst rates are.**
 The ten issuers with the *lowest* authorization rates cause only 13.25% of total rejections — recovering all of it caps out at limited upside. The real opportunity is concentrated in five *high-volume* issuers (Itaú, Nubank, Santander, Bradesco, Banco do Brasil), responsible for 62.77% of rejections; even a 1–2 pp improvement there outweighs fixing every small issuer combined.
 
+<p align="center"> <img src="./assets/big5-ranking.png" alt="Top 5 issuers by refusal rate, with cumulative refusal line reaching 62.77%" width="640"> </p> 
+
+<p align="center"> <img src="./assets/high-impact-target-zone.png" alt="Bubble chart contrasting the Big 5 high-impact issuers against the long tail of small, low-volume issuers" width="640"> </p>
+
 **2. CVC has an inconsistent, bank-specific effect ("the CVC paradox").**
 Across most major issuers, transactions **without** a CVC actually have *higher* approval rates than those with one. Nubank is the exception — it penalizes missing CVC data. A single global checkout rule (always/never require CVC) necessarily loses money somewhere; the recommendation is **dynamic, issuer-aware routing** rather than a static rule.
+
+<p align="center"> <img src="./assets/cvc-paradox.png" alt="Banco Inter approves more without CVC (73.3% vs 43.1%), while Nubank approves more with CVC (87.0% vs 83.1%)" width="640"> </p>
 
 **3. Recurring (ContAuth) transactions consistently outperform one-off Ecommerce.**
 E.g. Banco Inter jumps from 54% (Ecommerce) to 74.5% (ContAuth) authorization. Issuers appear to trust tokenized/saved-card transactions more than raw card entry, suggesting a lever around encouraging card-on-file adoption for repeat shoppers.
 
+<p align="center"> <img src="./assets/contauth-vs-ecommerce.png" alt="Authorization rate by issuer, ContAuth vs Ecommerce, for the five highest-impact issuers" width="640"> </p>
+
 **4. Small transaction amounts are *not* the fraud signal they're often assumed to be.**
 Contrary to the "card-testing" hypothesis, very small amounts (≤ 0.5) show **no statistically significant** reduction in authorization rate — Adyen's upstream fraud systems appear to already filter malicious low-value attempts, so merchant-side rules penalizing small amounts are likely unnecessary friction.
+
+<p align="center"> <img src="./assets/small-amounts-myth-vs-reality.png" alt="Myth vs reality: approval rates are virtually identical between small (79.88%) and regular (79.30%) ticket sizes" width="640"> </p>
 
 ---
 
@@ -91,6 +101,8 @@ Task 3 of the case asked how this analysis could scale beyond a single merchant.
 - **From notebook to pipeline**: convert the ad hoc, per-merchant Jupyter analysis into a parameterised, scheduled data pipeline (e.g. dbt/SQL models or a Spark job) that runs the same cleaning → Pareto ranking → segmentation logic for *any* merchant.
 - **Single source of truth**: centralise the output into a data mart (issuer × merchant × segment authorization metrics) so commercial teams can self-serve performance diagnostics instead of requesting bespoke analyses.
 - **Actionable output over raw data**: surface issuer-specific, statistically validated levers (like the CVC/ContAuth/amount findings above) as a repeatable diagnostic, not just a rate — so the recommendation generalises beyond this one merchant's dataset.
+
+<p align="center"> <img src="./assets/scaling-framework.png" alt="Proposed scaling path: global transaction data to analytics engineering to uplift ML models to merchant diagnostic dashboards" width="800"> </p>
 
 ---
 
