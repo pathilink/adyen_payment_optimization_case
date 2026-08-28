@@ -120,6 +120,13 @@ Task 3 of the case asked how this analysis could scale beyond a single merchant.
 │   ├── Case_Study_Statement_-_Optimisation_Data_Analyst.pdf   # Original case brief from Adyen
 │   ├── patricia_nascimento_case_study.pptx                    # Final presentation deck
 │   └── adyen_data_dictionary.xlsx                             # Column definitions for the raw dataset
+├── assets/
+│   ├── big5-ranking.png                   # Top 5 issuers by refusal rate (cumulative Pareto)
+│   ├── high-impact-target-zone.png        # Big 5 vs. long-tail issuers, bubble chart
+│   ├── cvc-paradox.png                    # CVC effect on approval, Banco Inter vs Nubank
+│   ├── contauth-vs-ecommerce.png          # Authorization rate, ContAuth vs Ecommerce
+│   ├── small-amounts-myth-vs-reality.png  # Small vs regular ticket approval rate
+│   └── scaling-framework.png              # Proposed pipeline for scaling across merchants
 └── README.md
 ```
 
