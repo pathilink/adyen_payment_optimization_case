@@ -20,7 +20,7 @@ The full slide deck delivered for the interview is available in [`patricia_nasci
 
 ## 🗂️ Data
 
-Anonymized transaction-level data for a single merchant, described in [`adyen_data_dictionary.xlsx`](./adyen_data_dictionary.xlsx):
+Anonymized transaction-level data for a single merchant, described in [`adyen_data_dictionary.xlsx`](https://docs.google.com/spreadsheets/d/1vzFPJa3qUqoQmPBkqJmI6BVxe3apJBrzcfkEsuld-Z4/edit?usp=sharing):
 
 | Column | Description |
 |---|---|
